@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<feed xml:base="http://localhost:3168/odata.svc/" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">Contact</title>
+  <id>http://localhost:3168/odata.svc/Contact</id>
+  <updated>2011-03-31T14:59:01Z</updated>
+  <link rel="self" title="Contact" href="Contact" />
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(1)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(1)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">1</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Mr.</d:Title>
+        <d:FirstName>Gustavo</d:FirstName>
+        <d:MiddleName m:null="true" />
+        <d:LastName>Achong</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>gustavo0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">2</d:EmailPromotion>
+        <d:Phone>398-555-0132</d:Phone>
+        <d:PasswordHash>GylyRwiKnyNPKbC1r4FSqA5YN9shIgsNik5ADyqStZc=</d:PasswordHash>
+        <d:PasswordSalt>TVGHbhY=</d:PasswordSalt>
+        <d:rowguid m:type="Edm.Guid">d4c132d3-fcb5-4231-9dd5-888a54bec693</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.06</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(2)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(2)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">2</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Ms.</d:Title>
+        <d:FirstName>Catherine</d:FirstName>
+        <d:MiddleName>R.</d:MiddleName>
+        <d:LastName>Abel</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>catherine0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">1</d:EmailPromotion>
+        <d:Phone>747-555-0171</d:Phone>
+        <d:PasswordHash>zh3goJUbYsPv92k4bVZuJtlLHwuvpQtu6uNcjkKSdF8=</d:PasswordHash>
+        <d:PasswordSalt>rpyd5Tw=</d:PasswordSalt>
+        <d:rowguid m:type="Edm.Guid">d54e0552-c226-4c22-af3b-762ca854cdd3</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.077</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(3)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(3)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">3</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Ms.</d:Title>
+        <d:FirstName>Kim</d:FirstName>
+        <d:MiddleName m:null="true" />
+        <d:LastName>Abercrombie</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>kim2@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">0</d:EmailPromotion>
+        <d:Phone>334-555-0137</d:Phone>
+        <d:PasswordHash>4I8349R6c33cK+j1ef3dZt0JHOQ9MV7OvEXpCbwhQrQ=</d:PasswordHash>
+        <d:PasswordSalt>rrgbG/U=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;Customer provided this telephone number for weekend access.&lt;act:telephoneNumber&gt;&lt;act:number&gt;605-555-9877&lt;/act:number&gt;&lt;/act:telephoneNumber&gt;secondary phone number.&lt;act:pager&gt;&lt;act:number&gt;310-555-5432&lt;/act:number&gt;&lt;act:SpecialInstructions&gt;Page only if other contact attempts fail.&lt;/act:SpecialInstructions&gt;&lt;/act:pager&gt;Additional home address.&lt;act:homePostalAddress&gt;&lt;act:Street&gt;990 5th Avenue&lt;/act:Street&gt;&lt;act:City&gt;Redmond&lt;/act:City&gt;&lt;act:StateProvince&gt;WA&lt;/act:StateProvince&gt;&lt;act:PostalCode&gt;98052&lt;/act:PostalCode&gt;&lt;act:CountryRegion&gt;USA&lt;/act:CountryRegion&gt;&lt;act:SpecialInstructions&gt;Use this address for billing only.&lt;/act:SpecialInstructions&gt;&lt;/act:homePostalAddress&gt;&lt;act:eMail&gt;&lt;act:eMailAddress&gt;Customer3@sample.com&lt;/act:eMailAddress&gt;&lt;act:SpecialInstructions&gt;Do not send e-mails for urgent issues. Use telephone instead.&lt;/act:SpecialInstructions&gt;&lt;/act:eMail&gt;&lt;crm:ContactRecord date="2002-01-01Z"&gt;Customer first contacted the sales department. This customer is interested in opening a new bicycle store.&lt;/crm:ContactRecord&gt;&lt;crm:ContactRecord date="2002-01-05Z"&gt;Linda in sales returned the call. Customer provided another telephone number for off-hour coverage.&lt;act:telephoneNumber&gt;&lt;act:number&gt;302-555-7733&lt;/act:number&gt;&lt;/act:telephoneNumber&gt;We are still negotiating possible long-term contract.&lt;/crm:ContactRecord&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">f7cbdb48-0b44-470e-9f37-7060446fbfb9</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.077</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(4)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(4)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">4</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Sr.</d:Title>
+        <d:FirstName>Humberto</d:FirstName>
+        <d:MiddleName m:null="true" />
+        <d:LastName>Acevedo</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>humberto0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">2</d:EmailPromotion>
+        <d:Phone>599-555-0127</d:Phone>
+        <d:PasswordHash>mvPHEF6EsbxXtC2E/oMjbwHUkLzZ36rOGbhK16lu30g=</d:PasswordHash>
+        <d:PasswordSalt>F5qyyxs=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;Additional phone numbers.&lt;act:mobile&gt;&lt;act:number&gt;750-555-8888&lt;/act:number&gt;&lt;act:SpecialInstructions&gt;If customer is not at work, call&lt;act:telephoneNumber&gt;&lt;act:number&gt;222-555-4444&lt;/act:number&gt;&lt;/act:telephoneNumber&gt;&lt;/act:SpecialInstructions&gt;&lt;/act:mobile&gt;Customer uses these two additional email addresses.&lt;act:eMail&gt;&lt;act:eMailAddress&gt;Customer4@sample.com&lt;/act:eMailAddress&gt;&lt;/act:eMail&gt;&lt;act:eMail&gt;&lt;act:eMailAddress&gt;Customer4@contoso.com&lt;/act:eMailAddress&gt;&lt;act:SpecialInstructions&gt;This is secondary email address.&lt;/act:SpecialInstructions&gt;&lt;/act:eMail&gt;&lt;crm:ContactRecord date="2002-01-01Z"&gt;Customer is expanding his sports and recreation business. Sales is negotiating large sales order with this customer. We called Joe at&lt;act:mobile&gt;&lt;act:number&gt;750-555-8888&lt;/act:number&gt;&lt;/act:mobile&gt;We are still working on competitive pricing. Looks promising, but we need additional marketing support to wrap this up.&lt;/crm:ContactRecord&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">5a41d336-84cf-44d7-b12b-83b64b511f7e</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.09</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(5)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(5)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">5</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Sra.</d:Title>
+        <d:FirstName>Pilar</d:FirstName>
+        <d:MiddleName m:null="true" />
+        <d:LastName>Ackerman</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>pilar1@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">0</d:EmailPromotion>
+        <d:Phone>1 (11) 500 555-0132</d:Phone>
+        <d:PasswordHash>cql0lRWe1D/voQgg+XSLgdjSKgHBuM1DonTpX9ru0x8=</d:PasswordHash>
+        <d:PasswordSalt>/RPjvXw=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;&lt;crm:ContactRecord date="2002-01-01Z"&gt;Sales contacted this customer for the first time at&lt;act:telephoneNumber&gt;&lt;act:number&gt;432-4444&lt;/act:number&gt;&lt;/act:telephoneNumber&gt;We talked about the Road bike price drop and the new spring models. Customer provided us new mobile number&lt;act:mobile&gt;&lt;act:number&gt;432-555-7809&lt;/act:number&gt;&lt;/act:mobile&gt;&lt;/crm:ContactRecord&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">df1fb8ab-2323-4330-9ab8-54e13ce6d8f9</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.09</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(6)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(6)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">6</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Ms.</d:Title>
+        <d:FirstName>Frances</d:FirstName>
+        <d:MiddleName>B.</d:MiddleName>
+        <d:LastName>Adams</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>frances0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">1</d:EmailPromotion>
+        <d:Phone>991-555-0183</d:Phone>
+        <d:PasswordHash>bmEI+phqLCE2jKmotM8SBAICQD2IvZEmy8X0LmUpMaw=</d:PasswordHash>
+        <d:PasswordSalt>jA7oD80=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;Additional email address.&lt;act:eMail&gt;&lt;act:eMailAddress&gt;Customer6@sample.com&lt;/act:eMailAddress&gt;&lt;/act:eMail&gt;&lt;crm:ContactRecord date="2002-07-01Z"&gt;Customer called us. Interested in the new Touring models.&lt;/crm:ContactRecord&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">66980082-c186-40ae-972a-74560e78c1af</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.09</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(7)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(7)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">7</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Ms.</d:Title>
+        <d:FirstName>Margaret</d:FirstName>
+        <d:MiddleName>J.</d:MiddleName>
+        <d:LastName>Smith</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>margaret0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">0</d:EmailPromotion>
+        <d:Phone>959-555-0151</d:Phone>
+        <d:PasswordHash>3cd7qJyW8ZTgRdwOO9nLYDZg2EM6lehJe/nqKlKKcPY=</d:PasswordHash>
+        <d:PasswordSalt>i2U3DxA=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;These are additional phone numbers the customer provided.&lt;act:telephoneNumber&gt;&lt;act:number&gt;206-555-2222&lt;/act:number&gt;&lt;act:SpecialInstructions&gt;Best time to call is Monday-Wednesday mornings.&lt;/act:SpecialInstructions&gt;&lt;/act:telephoneNumber&gt;&lt;act:mobile&gt;&lt;act:number&gt;209-555-2122&lt;/act:number&gt;&lt;/act:mobile&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">691818e1-fc19-445f-b161-e401867368e3</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.107</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(8)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(8)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">8</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Ms.</d:Title>
+        <d:FirstName>Carla</d:FirstName>
+        <d:MiddleName>J.</d:MiddleName>
+        <d:LastName>Adams</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>carla0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">0</d:EmailPromotion>
+        <d:Phone>107-555-0138</d:Phone>
+        <d:PasswordHash>BGtck5Z0HKYV7itEziPeWv3q5tbXMBxL7FZvbfhvITM=</d:PasswordHash>
+        <d:PasswordSalt>Qck1Nwg=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;&lt;crm:ContactRecord date="2002-09-02Z"&gt;The customer is interested in the Road-450 and Mountain-500 series bicycles. Customer called us. We need to follow up. Pager &lt;act:pager&gt;&lt;act:number&gt;206-555-1234&lt;/act:number&gt;&lt;/act:pager&gt; is the best way to reach.&lt;/crm:ContactRecord&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">5f183b92-1648-4948-8937-47c9c10f0583</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.107</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(9)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(9)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">9</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Mr.</d:Title>
+        <d:FirstName>Jay</d:FirstName>
+        <d:MiddleName m:null="true" />
+        <d:LastName>Adams</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>jay1@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">1</d:EmailPromotion>
+        <d:Phone>158-555-0142</d:Phone>
+        <d:PasswordHash>jCFDuqUMHmknfadTRSkMvN0IDObtE/GslvN9q2Wa5xU=</d:PasswordHash>
+        <d:PasswordSalt>117fxZM=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;Additional home and mobile phone numbers:&lt;act:telephoneNumber&gt;&lt;act:number&gt;253-555-4689&lt;/act:number&gt;&lt;/act:telephoneNumber&gt;&lt;act:mobile&gt;&lt;act:number&gt;253-555-4878&lt;/act:number&gt;&lt;/act:mobile&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">38256645-4b88-4169-b68a-5b0118f18445</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.123</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(10)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(10)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">10</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Mr.</d:Title>
+        <d:FirstName>Ronald</d:FirstName>
+        <d:MiddleName>L.</d:MiddleName>
+        <d:LastName>Adina</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>ronald0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">0</d:EmailPromotion>
+        <d:Phone>453-555-0165</d:Phone>
+        <d:PasswordHash>YmeWmxJE2oDSQKdiBOxrlEB76ejPI+UjMfientepsO0=</d:PasswordHash>
+        <d:PasswordSalt>AFWNDMw=</d:PasswordSalt>
+        <d:AdditionalContactInfo>&lt;AdditionalContactInfo xmlns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo" xmlns:crm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord" xmlns:act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"&gt;&lt;crm:ContactRecord date="2002-09-02Z"&gt;Marketing called this customer. Customer provided this phone number for follow-up questions.&lt;act:telephoneNumber&gt;&lt;act:number&gt;305-555-8888&lt;/act:number&gt;&lt;act:SpecialInstructions&gt;If no answer, try this pager number.&lt;act:pager&gt;&lt;act:number&gt;308-555-3678&lt;/act:number&gt;&lt;/act:pager&gt;&lt;/act:SpecialInstructions&gt;&lt;/act:telephoneNumber&gt; and this mobile number&lt;act:mobile&gt;&lt;act:number&gt;308-555-4888&lt;/act:number&gt;&lt;/act:mobile&gt;&lt;/crm:ContactRecord&gt;&lt;/AdditionalContactInfo&gt;</d:AdditionalContactInfo>
+        <d:rowguid m:type="Edm.Guid">dbb05a55-2256-42b1-901e-824d28158911</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2005-05-16T16:33:33.123</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(11)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(11)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">11</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Mr.</d:Title>
+        <d:FirstName>Samuel</d:FirstName>
+        <d:MiddleName>N.</d:MiddleName>
+        <d:LastName>Agcaoili</d:LastName>
+        <d:Suffix m:null="true" />
+        <d:EmailAddress>samuel0@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">0</d:EmailPromotion>
+        <d:Phone>554-555-0110</d:Phone>
+        <d:PasswordHash>jt9vdIyi0zI03wECUFk1hdZLTVOqN09/Fdogi+cTeQU=</d:PasswordHash>
+        <d:PasswordSalt>uFYBREA=</d:PasswordSalt>
+        <d:AdditionalContactInfo m:null="true" />
+        <d:rowguid m:type="Edm.Guid">43c55826-2843-49ab-bbbd-41065965a20e</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2001-09-01T00:00:00</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://localhost:3168/odata.svc/Contact(12)</id>
+    <title type="text"></title>
+    <updated>2011-03-31T14:59:01Z</updated>
+    <author>
+      <name />
+    </author>
+    <link rel="edit" title="Contact" href="Contact(12)" />
+    <category term="AdventureWorksModel.Contact" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/xml">
+      <m:properties>
+        <d:ContactID m:type="Edm.Int32">12</d:ContactID>
+        <d:NameStyle m:type="Edm.Boolean">false</d:NameStyle>
+        <d:Title>Mr.</d:Title>
+        <d:FirstName>James</d:FirstName>
+        <d:MiddleName>T.</d:MiddleName>
+        <d:LastName>Aguilar</d:LastName>
+        <d:Suffix>Jr.</d:Suffix>
+        <d:EmailAddress>james2@adventure-works.com</d:EmailAddress>
+        <d:EmailPromotion m:type="Edm.Int32">1</d:EmailPromotion>
+        <d:Phone>1 (11) 500 555-0198</d:Phone>
+        <d:PasswordHash>zdNdAKMA6FwuVaMQ6nco3rAYssblA2H+oUHeK4fPlvo=</d:PasswordHash>
+        <d:PasswordSalt>riLrG1Y=</d:PasswordSalt>
+        <d:AdditionalContactInfo m:null="true" />
+        <d:rowguid m:type="Edm.Guid">35ad71e7-8b4e-4c65-a92f-d6829bb292a5</d:rowguid>
+        <d:ModifiedDate m:type="Edm.DateTime">2003-08-01T00:00:00</d:ModifiedDate>
+      </m:properties>
+    </content>
+  </entry>
+</feed>
