@@ -1,7 +1,9 @@
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import util
 
 
 
+import odata.core
 import odata.wsgi
 
 
@@ -29,16 +31,15 @@ def main():
 
 	odata_application = webapp.WSGIApplication(
 			[
-				(r'/%s/\$metadata' % odata.wsgi.BASE_SVC_URL,      odata.wsgi.OData_metadata_handler),
-				(r'/%s/%%24metadata' % odata.wsgi.BASE_SVC_URL,    odata.wsgi.OData_metadata_handler),
-				(r'/%s/\$metadata/.*' % odata.wsgi.BASE_SVC_URL,   odata.wsgi.OData_metadata_handler),
-				(r'/%s/%%24metadata/.*' % odata.wsgi.BASE_SVC_URL, odata.wsgi.OData_metadata_handler),
+				(r'/%s/\$metadata'      % odata.core.BASE_SVC_URL, odata.wsgi.OData_metadata_handler),
+				(r'/%s/%%24metadata'    % odata.core.BASE_SVC_URL, odata.wsgi.OData_metadata_handler),
+				(r'/%s/\$metadata/.*'   % odata.core.BASE_SVC_URL, odata.wsgi.OData_metadata_handler),
+				(r'/%s/%%24metadata/.*' % odata.core.BASE_SVC_URL, odata.wsgi.OData_metadata_handler),
 
-				(r'/%s/$' % odata.wsgi.BASE_SVC_URL, odata.wsgi.OData_discovery_handler),
+				(r'/%s/$' % odata.core.BASE_SVC_URL, odata.wsgi.OData_discovery_handler),
 
-				(r'/%s/.*' % odata.wsgi.BASE_SVC_URL, odata.wsgi.OData_handler),
+				(r'/%s/.*' % odata.core.BASE_SVC_URL, odata.wsgi.OData_handler),
 
-				(r'/echo500/.*', echo500_handler),
 			],
 			debug=True
 			)

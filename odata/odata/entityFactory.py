@@ -25,11 +25,9 @@ def guess_module(class_name):
 
 
 def get_class_by_name(class_name):
-	# this could be much faster if we directly used the factory INSTANCE
-	module = guess_module(class_name)
-	python_module = __import__(module, globals(), locals(), [class_name])
-	entityClass = getattr(python_module, class_name)
-	return entityClass
+	for entityClass in INSTANCE:
+		if entityClass.__name__==class_name:
+			return entityClass
 
 
 def create_entity_from_atomEntry(entry):
