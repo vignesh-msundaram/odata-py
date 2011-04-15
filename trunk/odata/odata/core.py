@@ -188,7 +188,7 @@ def build_atom_for_entity(o, application_url):
 				if field_class==db.StringListProperty:	#FIXME
 					value = ','.join(value)
 				prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[field_class]
-				prop.text = str(value)
+				prop.text = unicode(value)
 		
 		properties.extension_elements.append(prop)
 		
