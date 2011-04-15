@@ -1,7 +1,7 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
-
+import odata.core
 
 class clientaccesspolicy_handler(webapp.RequestHandler):
 	def get(self):
@@ -16,11 +16,11 @@ class clientaccesspolicy_handler(webapp.RequestHandler):
                 <domain uri="*"/> 
             </allow-from> 
             <grant-to> 
-                <resource path="/" include-subpaths="true"/> 
+                <resource path="/%s" include-subpaths="true"/> 
             </grant-to> 
         </policy> 
     </cross-domain-access>
-</access-policy>""")
+</access-policy>""" % odata.core.BASE_SVC_URL)
 
 
 def main():

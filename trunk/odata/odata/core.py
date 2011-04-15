@@ -43,11 +43,14 @@ NAMESPACE = 'model'	#FIXME
 TYPE_MAPPING = {
 		db.IntegerProperty:  'Edm.Int32',
 		db.StringProperty:   'Edm.String',
+		db.StringListProperty:   'Edm.String',	#FIXME
+		db.TextProperty:   'Edm.String',
 		db.UserProperty:     'Edm.String',		#TODO: change this to a struct complextype
 		db.DateProperty:     'Edm.DateTime',
 		db.DateTimeProperty: 'Edm.DateTime',
 		db.TimeProperty:     'Edm.DateTime',
 		db.BooleanProperty:  'Edm.Boolean',
+#        db.ReferenceProperty:  'Edm.Boolean',
 }
 
 BASE_SVC_URL = 'odata.svc'
@@ -69,6 +72,8 @@ TYPE_TRANSFORM_FUNCTIONS = {
 		db.TimeProperty : lambda s : parseTime(s),
 		db.IntegerProperty : lambda s : int(s),
 		db.StringProperty : lambda s : s[1:-1] if s.startswith("'") and s.endswith("'") else s,
+		db.StringListProperty : lambda s : s.split(','),	#FIXME
+		db.TextProperty : lambda s : s,
 		db.BooleanProperty : lambda s : s=='true',
 #		'Edm.Boolean': lambda s : s=='true',
 		}
@@ -152,6 +157,14 @@ def build_atom_for_entity(o, application_url):
 	prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[db.StringProperty]
 	properties.extension_elements.append(prop)
 
+
+	entry = atom.data.Entry(
+		id = atom.data.Id(text="%s/%s/%s('%s')"  % (application_url, BASE_SVC_URL, class_name, entry_key)),
+		link = [atom.data.Link(rel='edit', title=class_name, href="%s('%s')" % (class_name, o.key())) ],
+		category = [atom.data.Category(term=class_fullname, scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme")],
+		content = atom.data.Content(type='application/xml')
+		)
+
 	# add other fields
 	for field in o.fields():
 		value = getattr(o, field)
@@ -161,18 +174,25 @@ def build_atom_for_entity(o, application_url):
 		if value==None:
 			prop.attributes['{%s}null'%EDMX_METADATA_NAMESPACE] = 'true'	#atom.core.XmlAttribute(EDMX_METADATA_NAMESPACE, 'null'))
 		else:
-			prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[o.fields()[field].__class__]
-			prop.text = str(value)
+			field_class = o.fields()[field].__class__
+			if field_class==db.ReferenceProperty:
+				ref_class = o.fields()[field].reference_class.__name__
+				entry.link.append(
+						atom.data.Link(rel='http://schemas.microsoft.com/ado/2007/08/dataservices/related/%s'%ref_class,
+						type='application/atom+xml;type=entry',
+						title=ref_class,
+						href="%s('%s')" % (ref_class, value.key()))
+						)
+				continue
+			else:
+				if field_class==db.StringListProperty:	#FIXME
+					value = ','.join(value)
+				prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[field_class]
+				prop.text = str(value)
 		
 		properties.extension_elements.append(prop)
 		
 
-	entry = atom.data.Entry(
-		id = atom.data.Id(text="%s/%s/%s('%s')"  % (application_url, BASE_SVC_URL, class_name, entry_key)),
-		link = [atom.data.Link(rel='edit', title=class_name, href="%s('%s')" % (class_name, o.key())) ],
-		category = [atom.data.Category(term=class_fullname, scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme")],
-		content = atom.data.Content(type='application/xml')
-		)
 	entry.content.extension_elements = [properties]
 
 
