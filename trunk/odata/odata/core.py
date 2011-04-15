@@ -34,6 +34,7 @@ import atom.core
 import StringIO
 
 from google.appengine.api import memcache
+from google.appengine.api import datastore_types
 from google.appengine.ext import db
 
 
@@ -76,7 +77,13 @@ TYPE_TRANSFORM_FUNCTIONS = {
 		db.TextProperty : lambda s : s,
 		db.BooleanProperty : lambda s : s=='true',
 #		'Edm.Boolean': lambda s : s=='true',
-		}
+
+
+datastore_types.Text: lambda o : unicode(o),
+unicode: lambda t : t,
+datetime.datetime : lambda d : d.isoformat(),
+long: lambda l: str(l),
+	}
 
 def parse_request_url(url):
 	match = URL_PATTERN.match(url)
@@ -188,7 +195,7 @@ def build_atom_for_entity(o, application_url):
 				if field_class==db.StringListProperty:	#FIXME
 					value = ','.join(value)
 				prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[field_class]
-				prop.text = unicode(value)
+				prop.text = TYPE_TRANSFORM_FUNCTIONS[value.__class__](value)#unicode(value)
 		
 		properties.extension_elements.append(prop)
 		
