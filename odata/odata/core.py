@@ -74,6 +74,7 @@ TYPE_TRANSFORM_FUNCTIONS = {
 		db.TimeProperty : lambda s : parseTime(s),
 		db.IntegerProperty : lambda s : int(s),
 		db.StringProperty : lambda s : s[1:-1] if s.startswith("'") and s.endswith("'") else s,
+		db.LinkProperty : lambda s : s[1:-1] if s.startswith("'") and s.endswith("'") else s,
 		db.StringListProperty : lambda s : s.split(','),	#FIXME
 		db.TextProperty : lambda s : s,
 		db.BooleanProperty : lambda s : s=='true',
@@ -85,6 +86,7 @@ datastore_types.Text: lambda o : unicode(o),
 unicode: lambda t : t,
 datetime.datetime : lambda d : d.isoformat(),
 long: lambda l: str(l),
+str: lambda l: l,
 	}
 
 def parse_request_url(url):
