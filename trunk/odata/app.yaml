@@ -7,9 +7,9 @@ handlers:
 - url: /odata.svc(/.*)
   script: odata-gae.py
 
-- url: /clientaccesspolicy.xml
-  script: clientaccesspolicy.py
-
 - url: /static
   static_dir: static
 
+- url: /clientaccesspolicy.xml
+  static_files: clientaccesspolicy.xml
+  upload: clientaccesspolicy.xml
