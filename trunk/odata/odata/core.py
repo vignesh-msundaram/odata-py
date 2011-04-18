@@ -44,6 +44,7 @@ NAMESPACE = 'model'	#FIXME
 TYPE_MAPPING = {
 		db.IntegerProperty:  'Edm.Int32',
 		db.StringProperty:   'Edm.String',
+		db.LinkProperty:   'Edm.String',
 		db.StringListProperty:   'Edm.String',	#FIXME
 		db.TextProperty:   'Edm.String',
 		db.UserProperty:     'Edm.String',		#TODO: change this to a struct complextype
@@ -79,6 +80,7 @@ TYPE_TRANSFORM_FUNCTIONS = {
 #		'Edm.Boolean': lambda s : s=='true',
 
 
+datastore_types.Link: lambda link : unicode(link),
 datastore_types.Text: lambda o : unicode(o),
 unicode: lambda t : t,
 datetime.datetime : lambda d : d.isoformat(),
