@@ -97,14 +97,16 @@ class OData_handler(webapp.RequestHandler):
 # $filter operator
 			if ('$filter' in self.request.str_params):
 				filter = self.request.str_params['$filter']
-				if '(' in filter or ')' in filter:
+				filter = filter.replace('(', '').replace(')', '')
+
+				if '(' in filter or ')' in filter:	#FIXME : impossible
 					self.error(400)
-					self.response.write("Grouping operators '(' and ')' are not supported\n")
-					self.response.write("Functions are not supported\n")
+					self.response.out.write("Grouping operators '(' and ')' are not supported\n")
+					self.response.out.write("Functions are not supported\n")
 					return
 				elif ' Or ' in filter:
 					self.error(400)
-					self.response.write("Only the 'And' operator is supported by the App Engine Datastore")
+					self.response.out.write("Only the 'And' operator is supported by the App Engine Datastore")
 					return
 				else:
 					import re
@@ -131,7 +133,7 @@ class OData_handler(webapp.RequestHandler):
 							query.filter('%s %s'%(prop,OPERATOR_MAPPING[op]), val)
 						except:
 							self.error(400)
-							self.response.write("Unable to understand expression '%s'"%filter_param)
+							self.response.out.write("Unable to understand expression '%s'"%filter_param)
 							return
 
 
