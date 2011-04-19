@@ -15,6 +15,7 @@ import entityFactory
 
 
 
+
 class OData_handler(webapp.RequestHandler):
 	def get_http_method(self):
 # get the x-http-method header, in case of POST tunnelling
@@ -63,9 +64,6 @@ class OData_handler(webapp.RequestHandler):
 		self.response.out.write('Currently not supported')
 
 	def get(self):
-		import logging
-		logging.info(self.request)
-
 		request_url = urllib.unquote(self.request.path).replace('/%s/' % core.BASE_SVC_URL, '')
 		dic = core.parse_request_url(request_url)
 
@@ -106,14 +104,13 @@ class OData_handler(webapp.RequestHandler):
 					return
 				elif ' Or ' in filter:
 					self.error(400)
-					self.response.out.write("Only the 'And' operator is supported by the App Engine Datastore")
+					self.response.out.write("Only the 'and' operator is supported by the App Engine Datastore")
 					return
 				else:
 					import re
-					filter_params = filter.split(' And ')
+					filter_params = filter.split(' and ')
 					for filter_param in filter_params:
 						prop,op,val = filter_param.split(' ')
-
 
 						try:
 							op = op.lower()
@@ -128,12 +125,14 @@ class OData_handler(webapp.RequestHandler):
 
 							val = core.TYPE_TRANSFORM_FUNCTIONS[getattr(entityClass, prop).__class__](val)
 
-							logging.info((prop,op,val))
 
 							query.filter('%s %s'%(prop,OPERATOR_MAPPING[op]), val)
 						except:
+							import sys
+
 							self.error(400)
 							self.response.out.write("Unable to understand expression '%s'"%filter_param)
+							self.response.out.write(str(sys.exc_info()[1]))
 							return
 
 
