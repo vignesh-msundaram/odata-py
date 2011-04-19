@@ -192,7 +192,7 @@ def build_atom_for_entity(o, application_url):
 						atom.data.Link(rel='http://schemas.microsoft.com/ado/2007/08/dataservices/related/%s'%ref_class,
 						type='application/atom+xml;type=entry',
 						title=ref_class,
-						href='%s/%s'%(entry.id.text, ref_class))#"%s('%s')" % (ref_class, value.key()))
+						href="%s('%s')" % (ref_class, value.key()))
 						)
 				continue
 			else:
