@@ -65,7 +65,7 @@ EDMX_ANNOTATION_NAMESPACE = 'http://schemas.microsoft.com/ado/2009/02/edm/annota
 
 ODATA_SERVICES_NAMESPACE = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
 
-URL_PATTERN = re.compile(r'(?P<namespace>(\w+\.)*)(?P<class_name>\w+)(\((?P<key>.*)\))?(/(?P<description>\w+))?$')
+URL_PATTERN = re.compile(r'(?P<namespace>(\w+\.)*)(?P<class_name>\w+)(\((?P<key>.*)\))?(/(?P<deferred_entity>\w+))?$')
 
 TYPE_TRANSFORM_FUNCTIONS = {
 		db.DateProperty : lambda s : parseDate(s),
@@ -99,7 +99,7 @@ def parse_request_url(url):
 		'class_name' : match.group('class_name'),
 		'namespace' : namespace,
 		'key' : key,
-		'description' : match.group('description'),
+		'deferred_entity' : match.group('deferred_entity'),
 	}
 
 def parseDate(s):
@@ -192,7 +192,7 @@ def build_atom_for_entity(o, application_url):
 						atom.data.Link(rel='http://schemas.microsoft.com/ado/2007/08/dataservices/related/%s'%ref_class,
 						type='application/atom+xml;type=entry',
 						title=ref_class,
-						href="%s('%s')" % (ref_class, value.key()))
+						href='%s/%s'%(entry.id.text, ref_class))#"%s('%s')" % (ref_class, value.key()))
 						)
 				continue
 			else:

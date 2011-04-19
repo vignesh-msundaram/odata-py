@@ -71,74 +71,74 @@ class OData_handler(webapp.RequestHandler):
 
 		class_name = dic['class_name']
 		key = dic['key']
-		description = dic['description']
+		deferred_entity = dic['deferred_entity']
 
 		entityClass = entityFactory.get_class_by_name(dic['class_name'])
 		query = entityClass.all()
 		
+		results = []
+
 		if key and len(key)>0:
-			query = query.filter('__key__ =', google.appengine.ext.db.Key(key))
-
-
+			if deferred_entity and len(deferred_entity)>0:
+				parent = entityClass.get(key)
+				results = [getattr(parent, deferred_entity)]
+			else:
+				results = [entityClass.get(key)]
+		else:
 # $orderby operator
-		if ('$orderby' in self.request.str_params):
-			orderby_params = self.request.str_params['$orderby'].split(',')
-			for orderby_param in orderby_params:
-				parts = orderby_param.split(' ')
-				field = parts[0]
-				order = '' if (len(parts)==1 or parts[1]=='asc') else '-'
-				query = query.order('%s%s' % (order, field))
+			if ('$orderby' in self.request.str_params):
+				orderby_params = self.request.str_params['$orderby'].split(',')
+				for orderby_param in orderby_params:
+					parts = orderby_param.split(' ')
+					field = parts[0]
+					order = '' if (len(parts)==1 or parts[1]=='asc') else '-'
+					query = query.order('%s%s' % (order, field))
 
 # $filter operator
-		if ('$filter' in self.request.str_params):
-			filter = self.request.str_params['$filter']
-			if '(' in filter or ')' in filter:
-				self.error(400)
-				self.response.write("Grouping operators '(' and ')' are not supported\n")
-				self.response.write("Functions are not supported\n")
-				return
-			elif ' Or ' in filter:
-				self.error(400)
-				self.response.write("Only the 'And' operator is supported by the App Engine Datastore")
-				return
-			else:
-				import re
-				filter_params = filter.split(' And ')
-				for filter_param in filter_params:
-					prop,op,val = filter_param.split(' ')
+			if ('$filter' in self.request.str_params):
+				filter = self.request.str_params['$filter']
+				if '(' in filter or ')' in filter:
+					self.error(400)
+					self.response.write("Grouping operators '(' and ')' are not supported\n")
+					self.response.write("Functions are not supported\n")
+					return
+				elif ' Or ' in filter:
+					self.error(400)
+					self.response.write("Only the 'And' operator is supported by the App Engine Datastore")
+					return
+				else:
+					import re
+					filter_params = filter.split(' And ')
+					for filter_param in filter_params:
+						prop,op,val = filter_param.split(' ')
 
 
-					try:
-						op = op.lower()
-						OPERATOR_MAPPING = {
-							'eq':'=',
-							'ne':'!=',
-							'gt':'>',
-							'ge':'>=',
-							'lt':'<',
-							'le':'<=',
-						}
+						try:
+							op = op.lower()
+							OPERATOR_MAPPING = {
+								'eq':'=',
+								'ne':'!=',
+								'gt':'>',
+								'ge':'>=',
+								'lt':'<',
+								'le':'<=',
+							}
 
-						val = core.TYPE_TRANSFORM_FUNCTIONS[getattr(entityClass, prop).__class__](val)
+							val = core.TYPE_TRANSFORM_FUNCTIONS[getattr(entityClass, prop).__class__](val)
 
-						logging.info((prop,op,val))
+							logging.info((prop,op,val))
 
-						query.filter('%s %s'%(prop,OPERATOR_MAPPING[op]), val)
-					except:
-						self.error(400)
-						self.response.write("Unable to understand expression '%s'"%filter_param)
-						return
+							query.filter('%s %s'%(prop,OPERATOR_MAPPING[op]), val)
+						except:
+							self.error(400)
+							self.response.write("Unable to understand expression '%s'"%filter_param)
+							return
 
 
 # fetch data and $top operator and $skip operator
-		nbEntities = int(self.request.str_params['$top']) if ('$top' in self.request.str_params) else core.MAX_FETCH_COUNT
-		skipEntities = int(self.request.str_params['$skip']) if ('$skip' in self.request.str_params) else 0
-		results = query.fetch(nbEntities, skipEntities)
-
-#  /description projection operator
-		if description:
-			results = [getattr(o, description) for o in results]
-
+			nbEntities = int(self.request.str_params['$top']) if ('$top' in self.request.str_params) else core.MAX_FETCH_COUNT
+			skipEntities = int(self.request.str_params['$skip']) if ('$skip' in self.request.str_params) else 0
+			results = query.fetch(nbEntities, skipEntities)
 
 # format response in json
 		response_format = self.request.str_params['$format'] if ('$format' in self.request.str_params) else 'atom'
