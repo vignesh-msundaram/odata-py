@@ -135,7 +135,7 @@ def get_edmProperties_from_entry(entry):
 			field_name = property.tag
 
 			# keys are not settable/copiable, and therefore cannot be considered as properties 
-			if field_name=='key_name':
+			if field_name=='key' or field_name=='key_name':
 				continue
 
 			type_attribute_key = '{%s}type'%EDMX_METADATA_NAMESPACE
@@ -165,13 +165,19 @@ def build_atom_for_entity(o, application_url):
 
 	properties = atom.data.ExtensionElement(tag='properties', namespace=EDMX_METADATA_NAMESPACE)
 
-	# add field key_name
+	# add field key
 	prop = atom.core.XmlElement(text=str(entry_key))
-	prop.tag = 'key_name'
+	prop.tag = 'key'
 	prop.namespace = ODATA_SERVICES_NAMESPACE
 	prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[db.StringProperty]
 	properties.extension_elements.append(prop)
 
+	# add field key_name
+	prop = atom.core.XmlElement(text=str(entry_key.name()))
+	prop.tag = 'key_name'
+	prop.namespace = ODATA_SERVICES_NAMESPACE
+	prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[db.StringProperty]
+	properties.extension_elements.append(prop)
 
 	entry = atom.data.Entry(
 		id = atom.data.Id(text="%s/%s/%s('%s')"  % (application_url, BASE_SVC_URL, class_name, entry_key)),
@@ -238,11 +244,18 @@ def build_metadata_document():
 		entityType.Name = store.__name__
 		schema.add_EntityType(entityType)
 
-# create key_name
-		entityType.set_Key(edmx.TEntityKeyElement(PropertyRef=[edmx.TPropertyRef(Name='key_name')]))
-		p = edmx.TProperty(Name='key_name', Type='Edm.String', Nullable=False)
+# create key
+		entityType.set_Key(edmx.TEntityKeyElement(PropertyRef=[edmx.TPropertyRef(Name='key')]))
+		
+		p = edmx.TProperty(Name='key', Type='Edm.String', Nullable=True)
 		p.set_anyAttributes_({'p8:StoreGeneratedPattern': 'Identity'})
 		entityType.add_Property(p)
+
+# create key
+		p = edmx.TProperty(Name='key_name', Type='Edm.String', Nullable=True)
+		p.set_anyAttributes_({'p8:StoreGeneratedPattern': 'Identity'})
+		entityType.add_Property(p)
+
 # create Fields
 		for name in store.fields():
 			t = store.fields()[name]
