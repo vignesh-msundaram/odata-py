@@ -52,7 +52,7 @@ TYPE_MAPPING = {
 		db.DateTimeProperty: 'Edm.DateTime',
 		db.TimeProperty:     'Edm.DateTime',
 		db.BooleanProperty:  'Edm.Boolean',
-#        db.ReferenceProperty:  'Edm.Boolean',
+		db.ReferenceProperty:  'Edm.String',
 }
 
 BASE_SVC_URL = 'odata.svc'
@@ -78,6 +78,7 @@ TYPE_TRANSFORM_FUNCTIONS = {
 		db.StringListProperty : lambda s : s.split(','),	#FIXME
 		db.TextProperty : lambda s : s,
 		db.BooleanProperty : lambda s : s=='true',
+		db.ReferenceProperty : lambda s : db.Model.get(TYPE_TRANSFORM_FUNCTIONS[db.StringProperty](s)).key(),  #FIXME performance
 #		'Edm.Boolean': lambda s : s=='true',
 
 
@@ -247,7 +248,7 @@ def build_metadata_document():
 # create key
 		entityType.set_Key(edmx.TEntityKeyElement(PropertyRef=[edmx.TPropertyRef(Name='key')]))
 		
-		p = edmx.TProperty(Name='key', Type='Edm.String', Nullable=True)
+		p = edmx.TProperty(Name='key', Type='Edm.String', Nullable=False)	# for the moment set to False because of LinqPad
 		p.set_anyAttributes_({'p8:StoreGeneratedPattern': 'Identity'})
 		entityType.add_Property(p)
 
@@ -259,31 +260,31 @@ def build_metadata_document():
 # create Fields
 		for name in store.fields():
 			t = store.fields()[name]
-			if isinstance(t, db.ReferenceProperty):
-				roles_index += 1
-				fromrole_name = "role_%s" % roles_index
+#            if isinstance(t, db.ReferenceProperty):
+#                roles_index += 1
+#                fromrole_name = "role_%s" % roles_index
 
-				roles_index += 1
-				torole_name = "role_%s" % roles_index
+#                roles_index += 1
+#                torole_name = "role_%s" % roles_index
 
-				association_index += 1
-				association_name = "association_%s" % (association_index)
-				association_fullname = "%s.%s" % (NAMESPACE, association_name)
+#                association_index += 1
+#                association_name = "association_%s" % (association_index)
+#                association_fullname = "%s.%s" % (NAMESPACE, association_name)
 
-				toType_fullName = NAMESPACE+'.'+t.data_type.__name__
-				fromType_fullName = NAMESPACE+'.'+entityType.Name
+#                toType_fullName = NAMESPACE+'.'+t.data_type.__name__
+#                fromType_fullName = NAMESPACE+'.'+entityType.Name
 
-				ref = edmx.TNavigationProperty(Name=t.name, Relationship=association_fullname, ToRole=torole_name, FromRole=fromrole_name)
-				entityType.add_NavigationProperty(ref)
+#                ref = edmx.TNavigationProperty(Name=t.name, Relationship=association_fullname, ToRole=torole_name, FromRole=fromrole_name)
+#                entityType.add_NavigationProperty(ref)
 
-				schema.add_Association(edmx.TAssociation(Name=association_name, End=[
-					edmx.TAssociationEnd(Role=fromrole_name, Type=fromType_fullName, Multiplicity="*"),
-					edmx.TAssociationEnd(Role=torole_name, Type=toType_fullName, Multiplicity="0..1"),
-					]))
-			else:
-				EdmType = TYPE_MAPPING[t.__class__]
-				p = edmx.TProperty(Name=name, Type=EdmType, Nullable=not(t.required))
-				entityType.add_Property(p)
+#                schema.add_Association(edmx.TAssociation(Name=association_name, End=[
+#                    edmx.TAssociationEnd(Role=fromrole_name, Type=fromType_fullName, Multiplicity="*"),
+#                    edmx.TAssociationEnd(Role=torole_name, Type=toType_fullName, Multiplicity="0..1"),
+#                    ]))
+#            else:
+			EdmType = TYPE_MAPPING[t.__class__]
+			p = edmx.TProperty(Name=name, Type=EdmType, Nullable=not(t.required))
+			entityType.add_Property(p)
 # add entity to EntityContainer
 		entitySet = edmx.EntitySet(Name=entityType.Name, EntityType=NAMESPACE+'.'+entityType.Name)
 		schema.EntityContainer.add_EntitySet(entitySet)
