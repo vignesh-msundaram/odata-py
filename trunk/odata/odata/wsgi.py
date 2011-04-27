@@ -131,7 +131,7 @@ class OData_handler(webapp.RequestHandler):
 							import sys
 
 							self.error(400)
-							self.response.out.write("Unable to understand expression '%s'"%filter_param)
+							self.response.out.write("Unable to understand expression '%s' : "%filter_param)
 							self.response.out.write(str(sys.exc_info()[1]))
 							return
 
