@@ -52,7 +52,7 @@ TYPE_MAPPING = {
 		db.DateTimeProperty: 'Edm.DateTime',
 		db.TimeProperty:     'Edm.DateTime',
 		db.BooleanProperty:  'Edm.Boolean',
-		db.ReferenceProperty:  'Edm.String',
+#        db.ReferenceProperty:  'Edm.String',
 }
 
 BASE_SVC_URL = 'odata.svc'
@@ -78,7 +78,7 @@ TYPE_TRANSFORM_FUNCTIONS = {
 		db.StringListProperty : lambda s : s.split(','),	#FIXME
 		db.TextProperty : lambda s : s,
 		db.BooleanProperty : lambda s : s=='true',
-		db.ReferenceProperty : lambda s : db.Model.get(TYPE_TRANSFORM_FUNCTIONS[db.StringProperty](s)).key(),  #FIXME performance
+#        db.ReferenceProperty : lambda s : db.Model.get(TYPE_TRANSFORM_FUNCTIONS[db.StringProperty](s)).key(),  #FIXME performance
 #		'Edm.Boolean': lambda s : s=='true',
 
 
@@ -205,12 +205,16 @@ def build_atom_for_entity(o, application_url):
 						title=ref_class,
 						href="%s('%s')" % (ref_class, value.key()))
 						)
-				continue
-			else:
-				if field_class==db.StringListProperty:	#FIXME
-					value = ','.join(value)
-				prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[field_class]
-				prop.text = TYPE_TRANSFORM_FUNCTIONS[value.__class__](value)#unicode(value)
+
+				field_class = db.StringProperty
+				value = str(value.key())
+				prop.tag = prop.tag + '__key__'
+
+			elif field_class==db.StringListProperty:	#FIXME
+				value = ','.join(value)
+
+			prop.attributes['{%s}type'%EDMX_METADATA_NAMESPACE] = TYPE_MAPPING[field_class]
+			prop.text = TYPE_TRANSFORM_FUNCTIONS[value.__class__](value)#unicode(value)
 		
 		properties.extension_elements.append(prop)
 		
@@ -260,28 +264,33 @@ def build_metadata_document():
 # create Fields
 		for name in store.fields():
 			t = store.fields()[name]
-#            if isinstance(t, db.ReferenceProperty):
-#                roles_index += 1
-#                fromrole_name = "role_%s" % roles_index
+			if isinstance(t, db.ReferenceProperty):
+				roles_index += 1
+				fromrole_name = "role_%s" % roles_index
 
-#                roles_index += 1
-#                torole_name = "role_%s" % roles_index
+				roles_index += 1
+				torole_name = "role_%s" % roles_index
 
-#                association_index += 1
-#                association_name = "association_%s" % (association_index)
-#                association_fullname = "%s.%s" % (NAMESPACE, association_name)
+				association_index += 1
+				association_name = "association_%s" % (association_index)
+				association_fullname = "%s.%s" % (NAMESPACE, association_name)
 
-#                toType_fullName = NAMESPACE+'.'+t.data_type.__name__
-#                fromType_fullName = NAMESPACE+'.'+entityType.Name
+				toType_fullName = NAMESPACE+'.'+t.data_type.__name__
+				fromType_fullName = NAMESPACE+'.'+entityType.Name
 
-#                ref = edmx.TNavigationProperty(Name=t.name, Relationship=association_fullname, ToRole=torole_name, FromRole=fromrole_name)
-#                entityType.add_NavigationProperty(ref)
+				ref = edmx.TNavigationProperty(Name=t.name, Relationship=association_fullname, ToRole=torole_name, FromRole=fromrole_name)
+				entityType.add_NavigationProperty(ref)
 
-#                schema.add_Association(edmx.TAssociation(Name=association_name, End=[
-#                    edmx.TAssociationEnd(Role=fromrole_name, Type=fromType_fullName, Multiplicity="*"),
-#                    edmx.TAssociationEnd(Role=torole_name, Type=toType_fullName, Multiplicity="0..1"),
-#                    ]))
-#            else:
+				schema.add_Association(edmx.TAssociation(Name=association_name, End=[
+					edmx.TAssociationEnd(Role=fromrole_name, Type=fromType_fullName, Multiplicity="*"),
+					edmx.TAssociationEnd(Role=torole_name, Type=toType_fullName, Multiplicity="0..1"),
+					]))
+
+
+# create a new field 'field__key__' from which we can directly read the entity key
+				name = name + '__key__'
+				t = db.StringProperty(required=t.required)
+
 			EdmType = TYPE_MAPPING[t.__class__]
 			p = edmx.TProperty(Name=name, Type=EdmType, Nullable=not(t.required))
 			entityType.add_Property(p)
