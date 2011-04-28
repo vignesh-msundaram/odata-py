@@ -1,9 +1,5 @@
 from google.appengine.ext import webapp
-
-
-
-
-import google.appengine.ext.db
+from google.appengine.ext import db
 
 import urllib
 
@@ -114,7 +110,9 @@ class OData_handler(webapp.RequestHandler):
 
 						if prop.endswith('__key__'):
 							prop = prop[:-7]
-							val = db.Model.get(TYPE_TRANSFORM_FUNCTIONS[db.StringProperty](s)).key()
+							val = db.Model.get(core.TYPE_TRANSFORM_FUNCTIONS[db.StringProperty](val)).key()
+						else:
+							val = core.TYPE_TRANSFORM_FUNCTIONS[getattr(entityClass, prop).__class__](val)
 
 						try:
 							op = op.lower()
@@ -127,7 +125,6 @@ class OData_handler(webapp.RequestHandler):
 								'le':'<=',
 							}
 
-							val = core.TYPE_TRANSFORM_FUNCTIONS[getattr(entityClass, prop).__class__](val)
 
 
 							query.filter('%s %s'%(prop,OPERATOR_MAPPING[op]), val)
