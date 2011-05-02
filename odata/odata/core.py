@@ -112,7 +112,7 @@ DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
 def parseDateTime(s):
 #datetime'2011-04-01T17:35:19.2580297+02:00'
 	if s.startswith('datetime'):
-		return datetime.datetime.strptime(s[9:-15], DATETIME_FORMAT)
+		return datetime.datetime.strptime(s[9:28], DATETIME_FORMAT)
 	else:
 		return datetime.datetime.strptime(s[:19], DATETIME_FORMAT)
 
