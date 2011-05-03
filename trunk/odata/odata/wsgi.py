@@ -20,6 +20,7 @@ class OData_handler(webapp.RequestHandler):
 		for k,v in self.request.headers.items():		# stupid _trans_name()
 			if k=='X-Http-Method':
 				method = v
+				break
 		return method
 
 	def merge(self):
