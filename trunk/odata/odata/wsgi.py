@@ -109,7 +109,9 @@ class OData_handler(webapp.RequestHandler):
 					for filter_param in filter_params:
 						prop,op,val = filter_param.split(' ')
 
-						if prop.endswith('__key__'):
+						if prop=='key':
+							prop = '__key__'
+						elif prop.endswith('__key__'):
 							prop = prop[:-7]
 							val = db.Model.get(core.TYPE_TRANSFORM_FUNCTIONS[db.StringProperty](val)).key()
 						else:
