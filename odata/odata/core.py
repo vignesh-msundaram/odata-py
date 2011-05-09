@@ -86,8 +86,9 @@ datastore_types.Link: lambda link : unicode(link),
 datastore_types.Text: lambda o : unicode(o),
 unicode: lambda t : t,
 datetime.datetime : lambda d : d.isoformat(),
+int: lambda i: str(i),
 long: lambda l: str(l),
-str: lambda l: l,
+str: lambda s: s,
 	}
 
 def parse_request_url(url):
