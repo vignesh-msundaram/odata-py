@@ -85,7 +85,7 @@ TYPE_TRANSFORM_FUNCTIONS = {
 datastore_types.Link: lambda link : unicode(link),
 datastore_types.Text: lambda o : unicode(o),
 unicode: lambda t : t,
-datetime.datetime : lambda d : d.isoformat(),
+datetime.datetime : lambda d : d.isoformat()+'+00:00',
 int: lambda i: str(i),
 long: lambda l: str(l),
 str: lambda s: s,
